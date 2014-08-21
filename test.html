@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1.0"/>
+        <title>testHTML</title>
+
+            <script type="text/javascript">
+                        if (navigator.geolocation) {
+                    // 現在の位置情報取得を実施
+                    navigator.geolocation.getCurrentPosition(
+                    // 位置情報取得成功時
+                    function (pos) { 
+                            var location ="<li>"+"緯度：" + pos.coords.latitude + "</li>";
+                            location += "<li>"+"経度：" + pos.coords.longitude + "</li>";
+                            document.getElementById("location").innerHTML = location;
+                    },
+                    // 位置情報取得失敗時
+                    function (pos) { 
+                            var location ="<li>位置情報が取得できませんでした。</li>";
+                            document.getElementById("location").innerHTML = location;
+                    });
+                } else {
+                    window.alert("本ブラウザではGeolocationが使えません");
+                }
+            </script>
+            
+            <script>
+            window.addEventListener("devicemotion", function(event1){
+                var x = event1.accelerationIncludingGravity.x;
+                var y = event1.accelerationIncludingGravity.y;
+                var z = event1.accelerationIncludingGravity.z;
+                 
+                var result1 = document.getElementById("result1");
+                result1.innerHTML = 
+                    "<li>X："+ Math.round(x * 10) / 10 +"</li>" +
+                    "<li>Y："+ Math.round(y * 10) / 10 +"</li>" + 
+                    "<li>Z："+ Math.round(z * 10) / 10 + "</li>";
+            }, true);
+             
+            window.addEventListener('deviceorientation', function(event2) {
+                var alpha = event2.alpha;
+                var beta = event2.beta;
+                var gamma = event2.gamma;
+                 
+                result2.innerHTML = 
+                    "<li>alpha："+ Math.round(alpha * 10) / 10 +"</li>" +
+                    "<li>beta："+ Math.round(beta * 10) / 10 +"</li>" + 
+                    "<li>gamma："+ Math.round(gamma * 10) / 10 +"</li>";
+            }, true);
+        </script>
+        
+        
+        <script>
+            window.addEventListener("load", function(){
+                 
+                if (!window.File){
+                    result.innerHTML = "File API 使用不可";
+                    return;
+                }
+                 
+                document.getElementById("imageFile").addEventListener("change", function(){
+                    var reader = new FileReader();
+                     
+                    reader.onload = function(event){
+                        document.getElementById("image").src = reader.result;
+                    }
+                    var file = document.getElementById("imageFile").files[0];
+                    reader.readAsDataURL(file);
+                }, true);
+            }, true);
+        </script>
+        
+    </head>
+    <body>
+        <p><big>GPS</big></br>
+        <ul id="location"></ul></p>
+        <p><big>加速度センサー</big></br>
+        <ul id="result1"></ul></p>
+        <p><big>ジャイロセンサー</big></br>
+        <ul id="result2"></ul></p>
+        
+        <form>
+            <input type="file" accept="image/*;capture=camera" id="imageFile"/>
+        </form>
+        <img id="image"width="200" height="200">
+    </body>
+</html>
