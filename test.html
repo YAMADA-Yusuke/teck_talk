@@ -3,7 +3,13 @@
     <head>
         <meta name="viewport" content="initial-scale=1.0"/>
         <title>testHTML</title>
-
+			<style type="text/css">
+			<!--
+			  #incss{
+			   background-color : #fffdf0;
+			   }
+			-->
+			</style>
             <script type="text/javascript">
                         if (navigator.geolocation) {
                     // 現在の位置情報取得を実施
@@ -29,12 +35,51 @@
                 var x = event1.accelerationIncludingGravity.x;
                 var y = event1.accelerationIncludingGravity.y;
                 var z = event1.accelerationIncludingGravity.z;
-                 
+                
+                var x2 = 256 - ((x + 1) / 10 * 200) ;
+                var y2 = 256 - ((y + 1) / 10 * 200) ;
+                var z2 = 256 - ((z + 1) / 10 * 200) ;
+                
+                if(x2 < 0){
+                	x2 = 0;
+                }
+                if(y2 < 0){
+                	y2 = 0;
+                }
+                if(z2 < 0){
+                	z2 = 0;
+                }
+                
+                x2 = Math.round(x2)
+                y2 = Math.round(y2)
+                z2 = Math.round(z2)
+                
+              
+                var x16 = x2.toString(16);
+                var y16 = y2.toString(16);
+                var z16 = z2.toString(16);
+                var xStr = "00" + String(x16);
+                var yStr = "00" + String(y16);
+                var zStr = "00" + String(z16);
+                
+                var colorStr = "#" ;
+                colorStr = colorStr + right(xStr,2) + right(yStr,2) + right(zStr,2);
+                
+                document.bgColor = colorStr;
+                
+                function right( str, n ) {
+   				l = str.length;
+    			if (n>l) n=l;
+   				return( str.substring(l-n,l) );
+				}
+
+                
                 var result1 = document.getElementById("result1");
                 result1.innerHTML = 
+                	"<li>color："+ colorStr +"</li>" + 
                     "<li>X："+ Math.round(x * 10) / 10 +"</li>" +
                     "<li>Y："+ Math.round(y * 10) / 10 +"</li>" + 
-                    "<li>Z："+ Math.round(z * 10) / 10 + "</li>";
+                    "<li>Z："+ Math.round(z * 10) / 10 + "</li>"
             }, true);
              
             window.addEventListener('deviceorientation', function(event2) {
@@ -48,7 +93,7 @@
                     "<li>gamma："+ Math.round(gamma * 10) / 10 +"</li>";
             }, true);
         </script>
-        
+
         
         <script>
             window.addEventListener("load", function(){
@@ -71,7 +116,7 @@
         </script>
         
     </head>
-    <body>
+    <body bgcolor="#ffffff">
         <p><big>GPS</big></br>
         <ul id="location"></ul></p>
         <p><big>加速度センサー</big></br>
