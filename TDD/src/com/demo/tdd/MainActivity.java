@@ -31,21 +31,17 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void createViews() {
-
-    }
-
     /**
      * 引数で渡した時間帯の挨拶を返すメソッド.
      *
-     * @param hourStr 時間(0 - 24)
+     * @param hourStr 時間(0 - 23)
      * @return hourStr < 0 : ""<br>
      *         hourStr = 0 - 4 : こんばんは<br>
      *         hourStr = 5 - 11 : おはようございます<br>
      *         hourStr = 12 - 18 : こんにちは<br>
-     *         hourStr = 19 - 24 : こんばんは<br>
-     *         hourStr > 24 : ""
-     * @throws ClassCastException
+     *         hourStr = 19 - 23 : こんばんは<br>
+     *         hourStr > 23 : ""
+     * @throws IllegalVariableException
      */
     public String getGreets1(String hour) throws IllegalVariableException {
         return null;
@@ -54,14 +50,14 @@ public class MainActivity extends ActionBarActivity {
     /**
      * 引数で渡した時間帯の挨拶を返すメソッド.
      *
-     * @param hourStr 時間(0 - 24)
+     * @param hourStr 時間(0 - 23)
      * @return hourStr < 0 : ""<br>
      *         hourStr = 0 - 4 : こんばんは<br>
      *         hourStr = 5 - 11 : おはようございます<br>
      *         hourStr = 12 - 18 : こんにちは<br>
-     *         hourStr = 19 - 24 : こんばんは<br>
-     *         hourStr > 24 : ""
-     * @throws ClassCastException
+     *         hourStr = 19 - 23 : こんばんは<br>
+     *         hourStr > 23 : ""
+     * @throws IllegalVariableException
      */
     public String getGreets(String hourStr) throws IllegalVariableException {
         // 引数で渡された時間をString型からint型に変換
@@ -69,7 +65,7 @@ public class MainActivity extends ActionBarActivity {
 
         // 時間に合わせて挨拶の文字列を返す
         String greetMsg = "";
-        if (hour < 0 || 24 < hour) {
+        if (hour < 0 || 23 < hour) {
             ;
         } else if (hour < 5) {
             greetMsg = "こんばんは";
@@ -77,7 +73,7 @@ public class MainActivity extends ActionBarActivity {
             greetMsg = "おはようございます";
         } else if (hour < 19) {
             greetMsg = "こんにちは";
-        } else if (hour < 25) {
+        } else if (hour < 24) {
             greetMsg = "こんばんは";
         }
         return greetMsg;
@@ -86,14 +82,14 @@ public class MainActivity extends ActionBarActivity {
     /**
      * 引数で渡した時間帯の挨拶を返すメソッド.
      *
-     * @param hourStr 時間(0 - 24)
+     * @param hourStr 時間(0 - 23)
      * @return hourStr < 0 : ""<br>
      *         hourStr = 0 - 4 : こんばんは<br>
      *         hourStr = 5 - 11 : おはようございます<br>
      *         hourStr = 12 - 18 : こんにちは<br>
-     *         hourStr = 19 - 24 : こんばんは<br>
-     *         hourStr > 24 : ""
-     * @throws ClassCastException
+     *         hourStr = 19 - 23 : こんばんは<br>
+     *         hourStr > 23 : ""
+     * @throws IllegalVariableException
      */
     public String getGreets3(String hourStr) throws IllegalVariableException {
         // nullチェック
@@ -111,7 +107,7 @@ public class MainActivity extends ActionBarActivity {
 
         // 時間に合わせて挨拶の文字列を返す
         String greetMsg = "";
-        if (hour < 0 || 24 < hour) {
+        if (hour < 0 || 23 < hour) {
             ;
         } else if (hour < 5) {
             greetMsg = "こんばんは";
@@ -119,7 +115,7 @@ public class MainActivity extends ActionBarActivity {
             greetMsg = "おはようございます";
         } else if (hour < 19) {
             greetMsg = "こんにちは";
-        } else if (hour < 25) {
+        } else if (hour < 24) {
             greetMsg = "こんばんは";
         }
         return greetMsg;

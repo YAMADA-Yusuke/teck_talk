@@ -8,14 +8,16 @@ import com.demo.tdd.MainActivity;
 
 public class MainActivityTest extends TestCase {
 
-    MainActivity testClass = new MainActivity();
+    MainActivity testClass = null;
 
     protected void setUp() throws Exception {
         super.setUp();
+        testClass = new MainActivity();
     }
 
     protected void tearDown() throws Exception {
         super.tearDown();
+        testClass = null;
     }
 
     /**
